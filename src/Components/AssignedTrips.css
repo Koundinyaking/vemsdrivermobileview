@@ -1,0 +1,174 @@
+.assigned-trips-container {
+  position: relative;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3f4f6;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: center; /* Center the title */
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.back-button {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Map Background */
+.map-background {
+  background: url('https://res.cloudinary.com/dlo7urgnj/image/upload/v1725507873/Product-Selector_okdnkh.png');
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card Carousel */
+.card-carousel {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  margin-top: -40px;
+  z-index: 2;
+}
+
+.trip-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  margin: 10px 0;
+  display: none;
+}
+
+.trip-card.active {
+  display: block;
+}
+
+.trip-info-summary {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trip-details {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.your-location, .final-destination {
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px;
+  position: relative;
+  gap: 5px;
+}
+
+.location-row {
+  display: flex;
+  align-items: center;
+}
+
+.location-icon {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.location-details {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  gap: 8px;
+}
+
+.location-address {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #888;
+  white-space: nowrap;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.active-dot {
+  background-color: #333;
+}
+
+/* Footer Icons */
+.footer-icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.home-icon, .settings-icon {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .assigned-trips-container {
+    padding: 8px;
+  }
+
+  .trip-card {
+    margin: 8px 0;
+    padding: 12px;
+  }
+
+  .footer-icons {
+    padding: 8px;
+  }
+}
