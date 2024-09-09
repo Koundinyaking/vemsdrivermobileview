@@ -16,7 +16,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/assigned-trips" element={<AssignedTrips />} />
           <Route path="/trip-history" element={<TripHistory />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Routes>
       </div>
     </Router>

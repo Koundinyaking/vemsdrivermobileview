@@ -1,0 +1,4 @@
+{
+    "getDriverProfile": "SELECT * FROM Drivers WHERE email = ?;"
+  }
+  

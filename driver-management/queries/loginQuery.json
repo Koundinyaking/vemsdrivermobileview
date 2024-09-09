@@ -1,0 +1,4 @@
+{
+    "checkEmail": "SELECT email FROM Drivers WHERE email = ?"
+  }
+  
