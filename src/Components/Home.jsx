@@ -1,14 +1,31 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaCar, FaHistory, FaUser, FaPhoneAlt, FaExclamationTriangle,FaHome,FaSignOutAlt } from 'react-icons/fa';
+import { FaCar, FaHistory, FaUser, FaPhoneAlt, FaExclamationTriangle, FaHome, FaSignOutAlt } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
 
-
   const handleBackButtonClick = () => {
-    navigate('/'); 
+    navigate('/');
+  };
+
+  const notify = (message) => {
+    toast.success(message, {
+      // position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000, 
+    });
+  };
+
+  const handleHelplineClick = () => {
+    
+    notify('Message sent to the admin team');
+  };
+
+  const handleSOSClick = () => {
+    notify('SOS alert sent to the admin team');
   };
 
   return (
@@ -29,8 +46,12 @@ const Home = () => {
       </div>
 
       <div className="bottom-actions">
-        <button className="helpline-button"><FaPhoneAlt /> Helpline</button>
-        <button className="sos-button"><FaExclamationTriangle /> SOS</button>
+        <button className="helpline-button" onClick={handleHelplineClick}>
+          <FaPhoneAlt /> Helpline
+        </button>
+        <button className="sos-button" onClick={handleSOSClick}>
+          <FaExclamationTriangle /> SOS
+        </button>
       </div>
 
       <div className="footer">
@@ -38,8 +59,9 @@ const Home = () => {
       </div>
       <div className="footer-icons">
         <FaHome className="home-icon" />
-         <FaSignOutAlt className="settings-icon" onClick={handleBackButtonClick}/>
+        <FaSignOutAlt className="settings-icon" onClick={handleBackButtonClick} />
       </div>
+      <ToastContainer />
     </div>
   );
 };
