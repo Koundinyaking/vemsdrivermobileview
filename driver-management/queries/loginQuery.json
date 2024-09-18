@@ -1,4 +1,5 @@
 {
-    "checkEmail": "SELECT email FROM Drivers WHERE email = ?"
+    "checkEmail": "SELECT driverId,email,password FROM Driver_Details1 WHERE email = ? AND password= ?"
   }
+  
   

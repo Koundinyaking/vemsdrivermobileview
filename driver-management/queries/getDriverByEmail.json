@@ -1,4 +1,3 @@
 {
-    "getDriverProfile": "SELECT * FROM Drivers WHERE email = ?;"
-  }
-  
+  "getDriverProfile": "SELECT * FROM Driver_Details1 WHERE driverId = ?;"
+}

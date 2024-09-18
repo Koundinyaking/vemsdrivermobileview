@@ -20,13 +20,15 @@ const LoginPage = () => {
             });
 
             if (response.status === 200) {
-                const driverId = response.data.driver.driverId; // Assuming driverId is returned
+                const driverId = response.data.driverId; 
+                console.log("Driver ID:", driverId); 
+                localStorage.setItem('driverId', driverId);
                 toast.success('Login successful!', {
                     position: "top-center",
                     autoClose: 2000,
                 });
                 setTimeout(() => {
-                    navigate(`/profile/${driverId}`);
+                    navigate("/home");
                 }, 2000);
             }
         } catch (error) {

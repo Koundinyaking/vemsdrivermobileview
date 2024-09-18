@@ -18,6 +18,14 @@ const Home = () => {
       autoClose: 3000, 
     });
   };
+  const handleProfileNavigation = () => {
+    const driverId = localStorage.getItem('driverId');
+    if (driverId) {
+      navigate(`/profile/${driverId}`);
+    } else {
+      console.error('Driver ID not found in local storage');
+    }
+  };
 
   const handleHelplineClick = () => {
     
@@ -42,7 +50,10 @@ const Home = () => {
       <div className="navigation-container">
         <Link to="/assigned-trips" className="nav-item"><FaCar size={24} /><p>Assigned Trips</p></Link>
         <Link to="/trip-history" className="nav-item"><FaHistory size={24} /><p>Trip History</p></Link>
-        <Link to="/profile" className="nav-item"><FaUser size={24} /><p>Profile</p></Link>
+        <div onClick={handleProfileNavigation} className="nav-item" style={{ cursor: 'pointer' }}>
+        <FaUser size={24} />
+        <p>Profile</p>
+      </div>
       </div>
 
       <div className="bottom-actions">
