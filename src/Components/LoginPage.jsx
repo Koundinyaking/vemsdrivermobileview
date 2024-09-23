@@ -13,6 +13,7 @@ const LoginPage = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         
+        
         try {
             const response = await axios.post('http://localhost:5000/api/login', {
                 email: loginId,
@@ -20,7 +21,7 @@ const LoginPage = () => {
             });
 
             if (response.status === 200) {
-                const driverId = response.data.driver.driverId; // Assuming driverId is returned
+                const driverId = response.data.driver.driverId;
                 toast.success('Login successful!', {
                     position: "top-center",
                     autoClose: 2000,
@@ -43,7 +44,7 @@ const LoginPage = () => {
             }
         }
     };
-
+    
     return (
         <div className="login-container">
             <div className="login-card">
