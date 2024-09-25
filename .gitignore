@@ -2,6 +2,7 @@
 
 # dependencies
 /driver-management/node_modules
+/driver-management/.env
 /node_modules
 /.pnp
 .pnp.js
