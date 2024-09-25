@@ -45,6 +45,7 @@ router.get('/getTripDetails/:id', async (req, res)=>{
     try{
         const tripDetails = await connection.query(queries.driverQueries.getDriverAssignedTrips, [driverId])
         if(tripDetails[0].length>0){
+            console.log(tripDetails[0])
             res.status(200).send({tripDetails : tripDetails[0]})
         }
         else{
@@ -70,6 +71,6 @@ router.get('/getTripHistory/:id', async (req, res)=>{
     catch(err){
         res.status(500).send('Some internal error occured')
     }
-})
+}) 
 
 module.exports = router;
