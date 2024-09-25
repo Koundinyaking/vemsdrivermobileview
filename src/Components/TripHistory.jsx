@@ -185,10 +185,10 @@ const TripHistory = () => {
             {expandedTripId === trip.id && (
               <>
                 <div className="trip-history-details">
-                  <div className="trip-detail">
+                  {/* <div className="trip-detail">
                     <p className="label">Distance</p>
                     <p className="value">{trip.distance}</p>
-                  </div>
+                  </div> */}
                   <div className="trip-detail">
                     <p className="label">Employees</p>
                     <p className="value">{trip.employees}</p>

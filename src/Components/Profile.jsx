@@ -93,7 +93,10 @@ const Profile = () => {
           </div>
         </div>
         <div className="profile-info-item">
-          <FaPhone className="profile-icon" />
+          <FaPhone style={{
+                fontSize: '17px',
+                transform: 'scaleX(-1)',
+            }} className="profile-icon" />
           <div>
             <p className="label">Phone Number</p>
             <span className="value">{driver.contact}</span>

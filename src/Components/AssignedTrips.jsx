@@ -8,7 +8,7 @@ const AssignedTrips = () => {
   const tripsData = [
     {
       id: 1,
-      date: 'Today, 03:00 PM',
+      TripId: 'Tripid:2345678',
       distance: '12 Km',
       duration: '30 Min',
       stops: 4,
@@ -24,8 +24,8 @@ const AssignedTrips = () => {
       },
     },
     {
-        id: 1,
-        date: 'Today, 04:00 PM',
+        id: 2,
+        TripId: 'Tripid:2345678',
         distance: '12 Km',
         duration: '30 Min',
         stops: 4,
@@ -41,8 +41,8 @@ const AssignedTrips = () => {
         },
       },
       {
-        id: 1,
-        date: 'Today, 05:00 PM',
+        id: 3,
+        TripId: 'Tripid:2345678',
         distance: '12 Km',
         duration: '30 Min',
         stops: 4,
@@ -77,13 +77,15 @@ const AssignedTrips = () => {
       <div className="card-carousel">
         {tripsData.map((trip, index) => (
           <div
-            key={trip.id}
+            key={trip.TripId}
             className={`trip-card ${index === currentIndex ? 'active' : ''}`}
           >
-            <h3>{trip.date}</h3>
+            <h3>{trip.TripId}</h3>
             <div className="trip-info-summary">
               <span>
-                <FaWalking /> {trip.distance} &nbsp;&nbsp; <FaClock /> {trip.duration} &nbsp;&nbsp; <FaStopwatch /> {trip.stops} Stops
+                {/* <FaWalking /> {trip.distance}  */}
+                &nbsp;&nbsp;
+               <FaClock /> {trip.duration} &nbsp;&nbsp; <FaStopwatch /> {trip.stops} Stops
               </span>
             </div>
             <div className="trip-details">
