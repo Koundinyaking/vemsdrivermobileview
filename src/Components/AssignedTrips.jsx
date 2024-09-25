@@ -2,65 +2,26 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { FaHome, FaCog, FaMapMarkerAlt, FaWalking, FaClock, FaStopwatch,FaArrowLeft } from 'react-icons/fa';
 import './AssignedTrips.css';
+import axios from 'axios';
 
 const AssignedTrips = () => {
   const navigate = useNavigate();
-  const tripsData = [
-    {
-      id: 1,
-      TripId: 'Tripid:2345678',
-      distance: '12 Km',
-      duration: '30 Min',
-      stops: 4,
-      yourLocation: {
-        distance: '1 Km',
-        time: '10 Mins away',
-        address: '7675 Hillcrest St. Fairport, NY 14450',
-      },
-      finalDestination: {
-        distance: '10 Km',
-        time: '30 Mins Trip',
-        address: '70 La Sierra St. Massapequa, NY 11758',
-      },
-    },
-    {
-        id: 2,
-        TripId: 'Tripid:2345678',
-        distance: '12 Km',
-        duration: '30 Min',
-        stops: 4,
-        yourLocation: {
-          distance: '1 Km',
-          time: '10 Mins away',
-          address: '7675 Hillcrest St. Fairport, NY 14450',
-        },
-        finalDestination: {
-          distance: '10 Km',
-          time: '30 Mins Trip',
-          address: '70 La Sierra St. Massapequa, NY 11758',
-        },
-      },
-      {
-        id: 3,
-        TripId: 'Tripid:2345678',
-        distance: '12 Km',
-        duration: '30 Min',
-        stops: 4,
-        yourLocation: {
-          distance: '1 Km',
-          time: '10 Mins away',
-          address: '7675 Hillcrest St. Fairport, NY 14450',
-        },
-        finalDestination: {
-          distance: '10 Km',
-          time: '30 Mins Trip',
-          address: '70 La Sierra St. Massapequa, NY 11758',
-        },
-      },
-   
-  ];
+  
+  const [tripsData, setTripsData] = ([])
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const driverId = localStorage.getItem('driverId');
+
+  const handleDriverTrips = async ()=>{
+    try{
+      const trips = await axios.get(`http://localhost:5000/driver/getTripDetails/${driverId}`)
+      setTripsData(trips.data.tripDetails)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
 
   const handleBackButtonClick = () => {
     navigate('/home'); 
@@ -80,7 +41,7 @@ const AssignedTrips = () => {
             key={trip.TripId}
             className={`trip-card ${index === currentIndex ? 'active' : ''}`}
           >
-            <h3>{trip.TripId}</h3>
+            <h3>{trip.BookingId}</h3>
             <div className="trip-info-summary">
               <span>
                 {/* <FaWalking /> {trip.distance}  */}

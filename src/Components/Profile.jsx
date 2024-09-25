@@ -24,7 +24,7 @@ const Profile = () => {
         
         if (driverId) {
           // Fetch driver details using the ID
-          const response = await axios.get(`http://localhost:5000/api/driver/${driverId}`);
+          const response = await axios.get(`http://localhost:5000/driver/driver/${driverId}`);
           setDriver(response.data.driver);
         } else {
           console.error('Driver ID not found in localStorage');
