@@ -59,7 +59,16 @@ router.get('/getTripDetails/:id', async (req, res)=>{
 router.get('/getTripHistory/:id', async (req, res)=>{
     const driverId = req.params.id
     try{
-        
+        const tripHistory = await connection.query(queries.driverQueries.getDriverHistory, [driverId])
+        if(tripHistory[0].length>0){
+            res.status(200).send({trip : tripHistory[0]})
+        }      
+        else{
+            res.status(404).send('No previous trips found')
+        }
+    }
+    catch(err){
+        res.status(500).send('Some internal error occured')
     }
 })
 

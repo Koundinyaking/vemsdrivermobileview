@@ -7,7 +7,9 @@
 
         "getDriverById" : "SELECT * FROM DriverDetails WHERE DriverId = ?",
 
-        "getDriverAssignedTrips" : "SELECT c.* FROM cabAllocationML c JOIN DriverDetails d ON d.VehicleId = c.VehicleId WHERE d.DriverId = ?"
+        "getDriverAssignedTrips" : "SELECT c.* FROM cabAllocationML c JOIN DriverDetails d ON d.VehicleId = c.VehicleId WHERE d.DriverId = ?",
+
+        "getDriverHistory" : "SELECT t.TripId, t.TripDate, ca.PriorityOrder, cb.EmployeeName, cb.EmployeeAddress, t.StartTime, t.EndTime  FROM tripmanagement t JOIN cabbookingtable cb ON t.BookingId = cb.BookingId JOIN caballocationml ca ON ca.BookingId = cb.BookingId JOIN driverdetails d ON d.VehicleId = ca.VehicleId WHERE d.DriverId = ? ORDER BY ca.PriorityOrder ASC"
 
     }
 
