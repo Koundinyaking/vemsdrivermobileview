@@ -1,0 +1,15 @@
+{
+    "driverQueries":{
+        
+        "driverLogin": "SELECT * FROM DriverDetails WHERE DriverEmail = ? AND DriverPassword = ?",
+
+        "getDriverDetails" : "SELECT * FROM DriverDetails WHERE DriverEmail = ?",
+
+        "getDriverById" : "SELECT * FROM DriverDetails WHERE DriverId = ?",
+
+        "getDriverAssignedTrips" : "SELECT c.* FROM cabAllocationML c JOIN DriverDetails d ON d.VehicleId = c.VehicleId WHERE d.DriverId = ?"
+
+    }
+
+}
+  
