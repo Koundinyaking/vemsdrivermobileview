@@ -15,7 +15,7 @@ const LoginPage = () => {
         
         
         try {
-            const response = await axios.post('http://localhost:5000/api/login', {
+            const response = await axios.post('http://localhost:5000/driver/login', {
                 email: loginId,
                 password: password
             });

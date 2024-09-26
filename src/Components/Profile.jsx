@@ -7,6 +7,7 @@ import { BsCalendarDateFill } from "react-icons/bs";
 
 const Profile = () => {
   const navigate = useNavigate();
+  
   const [driver, setDriver] = useState(null);
 
   // Function to format the date to a more readable format
@@ -25,7 +26,7 @@ const Profile = () => {
         if (driverId) {
           // Fetch driver details using the ID
           const response = await axios.get(`http://localhost:5000/driver/driver/${driverId}`);
-          setDriver(response.data.driver);
+          setDriver(response.data.driver[0]);
         } else {
           console.error('Driver ID not found in localStorage');
         }
@@ -34,9 +35,11 @@ const Profile = () => {
       }
     };
 
+    
     fetchDriverProfile();
   }, []);
-
+  console.log(driver)
+  
   const handleBackButtonClick = () => {
     navigate('/home'); 
   };
@@ -48,32 +51,32 @@ const Profile = () => {
       <div className="profile-header">
         <FaArrowLeft className="back-icon" onClick={handleBackButtonClick}/>
         <img 
-          src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1725302479/IMG_20220923_220919_zjzuye.jpg" 
+          src={driver.DriverImage}
           alt="Profile"
           className="profile-pic"
         />
         <h2>{driver.driverName}</h2>
-        <p className="username">{driver.driverId}</p>
+        <p className="username">{driver.DriverName}</p>
         <div className="profile-stats">
-          <div>
+          {/* <div>
             <span>{driver.rating}</span>
             <p>★</p>
+          </div> */}
+          <div>
+            <p>Driver Id</p>
+            <span>{driver.DriverId}</span>
           </div>
           <div>
-            <span>{driver.trips}</span>
             <p>Trips</p>
-          </div>
-          <div>
-            <span>{driver.time}</span>
-            <p>Time</p>
+            <span>{driver.DriverTrips}</span>
           </div>
           <div>
             <p>Experience</p>
-            <span>{driver.experience}</span>
+            <span>{driver.DriverExperience}</span>
           </div>
           <div>
-            <span>{driver.distance}</span>
-            <p>Distance</p>
+            <p>Date of Joining</p>
+            <span>{driver.DriverAddedDate}</span>
           </div>
         </div>
       </div>
@@ -82,14 +85,14 @@ const Profile = () => {
           <FaUser className="profile-icon" />
           <div>
             <p className="label">Full Name</p>
-            <span className="value">{driver.driverName}</span>
+            <span className="value">{driver.DriverName}</span>
           </div>
         </div>
         <div className="profile-info-item">
           <FaVenusMars className="profile-icon" />
           <div>
             <p className="label">Gender</p>
-            <span className="value">{driver.gender}</span>
+            <span className="value">{driver.DriverGender}</span>
           </div>
         </div>
         <div className="profile-info-item">
@@ -99,42 +102,49 @@ const Profile = () => {
             }} className="profile-icon" />
           <div>
             <p className="label">Phone Number</p>
-            <span className="value">{driver.contact}</span>
+            <span className="value">{driver.DriverPhone}</span>
           </div>
         </div>
         <div className="profile-info-item">
           <FaIdCard className="profile-icon" />
           <div>
             <p className="label">Aadhar Card Number</p>
-            <span className="value">{driver.aadhar}</span>
+            <span className="value">{driver.DriverAadhar}</span>
           </div>
         </div>
         <div className="profile-info-item">
           <FaPassport className="profile-icon" />
           <div>
             <p className="label">License Number</p>
-            <span className="value">{driver.licenceNumber}</span>
+            <span className="value">{driver.DriverLicense}</span>
+          </div>
+        </div>
+        <div className="profile-info-item">
+          <FaCar className="profile-icon" />
+          <div>
+            <p className="label">Vehicle Number</p>
+            <span className="value">{driver.VehicleNumber}</span>
           </div>
         </div>
         <div className="profile-info-item">
           <FaCar className="profile-icon" />
           <div>
             <p className="label">Vehicle Type</p>
-            <span className="value">{driver.vehicleType}</span>
+            <span className="value">{driver.VehicleType}</span>
           </div>
         </div>
         <div className="profile-info-item">
           <FaMapMarkerAlt className="profile-icon" />
           <div>
             <p className="label">Address</p>
-            <span className="value">{driver.address}</span>
+            <span className="value">{driver.DriverAddress}</span>
           </div>
         </div>
         <div className="profile-info-item">
           <BsCalendarDateFill className="profile-icon" />
           <div>
             <p className="label">Date of Birth</p>
-            <span className="value">{formatDate(driver.dob)}</span>
+            <span className="value">{formatDate(driver.DriverDOB)}</span>
           </div>
         </div>
       </div>
