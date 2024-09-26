@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../db')
-const queries = require('../queries/queries.json');
+const queries = require('../SQL/queries.json');
 
 router.post('/login', async(req, res)=>{
     const {email, password} = req.body
