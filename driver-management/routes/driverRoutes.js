@@ -4,11 +4,12 @@ const connection = require('../db')
 const queries = require('../queries/queries.json');
 
 router.post('/login', async(req, res)=>{
-    const {loginId, password} = req.body
+    const {email, password} = req.body
     try{
-        const driverEmail = await connection.query(queries.driverQueries.getDriverDetails, [loginId])
+        console.log(req.body)
+        const driverEmail = await connection.query(queries.driverQueries.getDriverDetails, [email])
         if(driverEmail[0].length>0){
-            const driver = await connection.query(queries.driverQueries.driverLogin, [loginId, password])
+            const driver = await connection.query(queries.driverQueries.driverLogin, [email, password])
             console.log(driver[0])
             if(driver[0].length>0){
                 res.status(200).send({message : 'Logged in successfully', driverId : driver[0][0].DriverId})
@@ -22,6 +23,7 @@ router.post('/login', async(req, res)=>{
         }
     }
     catch(err){
+        console.log(err)
         res.status(500).send('Internal Server Error')
     }
 })
@@ -31,7 +33,7 @@ router.get('/driver/:id', async (req, res)=>{
     try{
         const driverDetails = await connection.query(queries.driverQueries.getDriverById, [driverId])
         if(driverDetails[0].length>0){
-            res.status(200).send({driver : driverDetails[0][0]})
+            res.status(200).send({driver : driverDetails[0]})
         }
     }
     catch(err){
@@ -53,6 +55,7 @@ router.get('/getTripDetails/:id', async (req, res)=>{
         }
     }
     catch(err){
+        console.log(err)
         res.status(500).send('Some internal server error')
     }
 })

@@ -3,11 +3,11 @@
         
         "driverLogin": "SELECT * FROM DriverDetails WHERE DriverEmail = ? AND DriverPassword = ?",
 
-        "getDriverDetails" : "SELECT * FROM DriverDetails WHERE DriverEmail = ?",
+        "getDriverDetails" : "SELECT * WHERE DriverEmail = ?",
 
-        "getDriverById" : "SELECT * FROM DriverDetails WHERE DriverId = ?",
+        "getDriverById" : "SELECT d.*, v.VehicleNumber, v.VehicleType FROM DriverDetails d JOIN VehicleDetails v ON v.VehicleId = d.VehicleId WHERE DriverId = ?",
 
-        "getDriverAssignedTrips" : "SELECT c.* FROM cabAllocationML c JOIN DriverDetails d ON d.VehicleId = c.VehicleId WHERE d.DriverId = ?",
+        "getDriverAssignedTrips" : "SELECT c.*, e.EmployeeAddress, e.EmployeeCity FROM cabAllocationML c JOIN EmployeeDetails e ON c.EmployeeId = e.EmployeeId JOIN DriverDetails d ON d.VehicleId = c.VehicleId WHERE d.DriverId = ?",
 
         "getDriverHistory" : "SELECT t.BookingId, t.TripDate, ca.PriorityOrder, cb.EmployeeName, cb.EmployeeAddress, t.StartTime, t.EndTime  FROM tripmanagement t JOIN cabbookingtable cb ON t.BookingId = cb.BookingId JOIN caballocationml ca ON ca.BookingId = cb.BookingId JOIN driverdetails d ON d.VehicleId = ca.VehicleId WHERE d.DriverId = ? ORDER BY ca.PriorityOrder ASC"
 
