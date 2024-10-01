@@ -9,8 +9,12 @@ const Profile = () => {
   const navigate = useNavigate();
   
   const [driver, setDriver] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // Function to format the date to a more readable format
+
   const formatDate = (isoDate) => {
     if (!isoDate) return '';
     const date = new Date(isoDate);
@@ -20,11 +24,11 @@ const Profile = () => {
   useEffect(() => {
     const fetchDriverProfile = async () => {
       try {
-        // Get the driver ID from localStorage
+   
         const driverId = localStorage.getItem('driverId');
         
         if (driverId) {
-          // Fetch driver details using the ID
+        
           const response = await axios.get(`http://localhost:5000/driver/driver/${driverId}`);
           setDriver(response.data.driver[0]);
         } else {
@@ -38,10 +42,33 @@ const Profile = () => {
     
     fetchDriverProfile();
   }, []);
-  console.log(driver)
   
   const handleBackButtonClick = () => {
     navigate('/home'); 
+  };
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+    try {
+      const driverId = localStorage.getItem('driverId');
+      if (driverId) {
+        
+        const response = await axios.post(`http://localhost:5000/driver/changePassword`, {
+          driverId,
+          oldPassword,
+          newPassword
+        });
+
+        if (response.data.success) {
+          alert('Password changed successfully!');
+          setShowModal(false);
+        } else if (response.data.success=="false") {
+          alert('Old password is incorrect.');
+        }
+      }
+    } catch (error) {
+      console.error('Error changing password:', error);
+    }
   };
 
   if (!driver) return <p>Loading...</p>;
@@ -147,7 +174,43 @@ const Profile = () => {
             <span className="value">{formatDate(driver.DriverDOB)}</span>
           </div>
         </div>
+        <button className="change-password-btn" onClick={() => setShowModal(true)}>
+          Change Password
+        </button>
       </div>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Change Password</h3>
+            <form onSubmit={handlePasswordChange}>
+              <div className="input-group">
+                <label htmlFor="oldPassword">Old Password</label>
+                <input
+                  type="password"
+                  id="oldPassword"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="newPassword">New Password</label>
+                <input
+                  type="password"
+                  id="newPassword"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="modal-buttons">
+                <button type="submit" className="submit-btn">Submit</button>
+                <button type="button" className="close-btn" onClick={() => setShowModal(false)}>Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

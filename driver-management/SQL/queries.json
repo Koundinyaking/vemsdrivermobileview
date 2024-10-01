@@ -3,7 +3,7 @@
         
         "driverLogin": "SELECT * FROM DriverDetails WHERE DriverEmail = ? AND DriverPassword = ?",
 
-        "getDriverDetails" : "SELECT * WHERE DriverEmail = ?",
+        "getDriverDetails" : "SELECT * FROM DriverDetails WHERE DriverEmail = ?",
 
         "getDriverById" : "SELECT d.*, v.VehicleNumber, v.VehicleType FROM DriverDetails d JOIN VehicleDetails v ON v.VehicleId = d.VehicleId WHERE DriverId = ?",
 
@@ -14,4 +14,6 @@
     }
 
 }
+
+
   

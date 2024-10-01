@@ -44,14 +44,14 @@ const TripHistory = () => {
     return (Math.abs(Math.floor(differenceInDays)))
   }
   
-  const handleTabInfor = async (activeTab) => {
+  const handleTabInfor = async (slectedTab) => {
     try {
       let filteredTrips = [];
-      if (activeTab === 'Today') {
+      if (slectedTab === 'Today') {
         filteredTrips = tripHistory.filter(trip => trip.TripDate === formattedDate);
-      } else if (activeTab === 'Yesterday') {
+      } else if (slectedTab === 'Yesterday') {
         filteredTrips = tripHistory.filter(trip => handleDateDifference(trip.TripDate) === 1);
-      } else if (activeTab === 'Last Week') {
+      } else if (slectedTab === 'Last Week') {
         filteredTrips = tripHistory.filter(trip => handleDateDifference(trip.TripDate) > 1);
       }
       if (filteredTrips.length > 0) {
@@ -103,7 +103,6 @@ const TripHistory = () => {
           </div>
         )}
       </div>
-
       <div className="trip-history-tabs">
         <button className={`tab ${activeTab === 'Today' ? 'active' : ''}`} onClick={()=>handleTabClick('Today')}>Today</button>
         <button className={`tab ${activeTab === 'Yesterday' ? 'active' : ''}`} onClick={() => handleTabClick('Yesterday')}>Yesterday</button>
@@ -124,9 +123,9 @@ const TripHistory = () => {
               {expandedTripId === trip.BookingId && (
                 <>
                 <div className="trip-history-details">
-                  <div className="trip-detail">  
-                    <p className="label">Employee Details</p>
-                    <FaUserAlt />
+                  <div className="trip-detail"> 
+                    <p className="label"><FaUserAlt /> &nbsp; Employee Details</p>
+                    
                     <p className="value" >{trip.EmployeeName}</p>
                   </div>
                 </div>

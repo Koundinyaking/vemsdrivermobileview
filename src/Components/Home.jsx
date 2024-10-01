@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleBackButtonClick = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   const notify = (message) => {
