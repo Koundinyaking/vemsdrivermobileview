@@ -13,7 +13,7 @@ const HomePage = () => {
         <img
           src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1727681543/IMG_20240930_130136_znzqnu.png"
           alt="Cab"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }} // Cover the entire area
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
         {/* Overlay Text */}
         <div style={{

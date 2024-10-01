@@ -7,7 +7,7 @@
 
         "getDriverById" : "SELECT d.*, v.VehicleNumber, v.VehicleType FROM DriverDetails d JOIN VehicleDetails v ON v.VehicleId = d.VehicleId WHERE DriverId = ?",
 
-        "getDriverAssignedTrips" : "SELECT c.*, e.EmployeeAddress, e.EmployeeCity FROM cabAllocationML c JOIN EmployeeDetails e ON c.EmployeeId = e.EmployeeId JOIN DriverDetails d ON d.VehicleId = c.VehicleId WHERE d.DriverId = ?",
+        "getDriverAssignedTrips" : "SELECT c.*, e.EmployeeAddress, e.EmployeeCity FROM TripHistory c JOIN EmployeeDetails e ON c.EmployeeId = e.EmployeeId JOIN DriverDetails d ON d.VehicleId = c.VehicleId WHERE d.DriverId = ?",
 
         "getDriverHistory" : "SELECT * FROM TripHistory WHERE DriverId = ? ORDER BY PriorityOrder ASC"
 
