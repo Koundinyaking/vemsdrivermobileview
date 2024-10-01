@@ -76,4 +76,39 @@ router.get('/getTripHistory/:id', async (req, res)=>{
     }
 }) 
 
+router.post('/changePassword', async (req, res) => {
+    const { driverId, oldPassword, newPassword } = req.body;
+    try {
+     
+      const driver = await connection.query(
+        'SELECT * FROM DriverDetails WHERE DriverId = ? AND DriverPassword = ?',
+        [driverId, oldPassword]
+      );
+      
+    
+      if (driver[0].length === 0) {
+        return res.status(404).json({ success: false, message: 'Driver not found' });
+      }
+  
+
+      const isMatch = oldPassword === driver[0][0].DriverPassword ? true : false;
+      if (!isMatch) {
+        return res.json({ success: false, message: 'Old password is incorrect.' });
+      }
+  
+
+      await connection.query(
+        'UPDATE DriverDetails SET DriverPassword = ? WHERE DriverId = ?',
+        [newPassword, driverId]
+      );
+      
+      
+      res.json({ success: true, message: 'Password updated successfully' });
+    } catch (error) {
+      console.error('Error updating password:', error);
+      res.status(500).json({ success: false, message: 'Server error' });
+    }
+  });
+  
+
 module.exports = router;

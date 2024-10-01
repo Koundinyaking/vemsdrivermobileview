@@ -44,14 +44,14 @@ const TripHistory = () => {
     return (Math.abs(Math.floor(differenceInDays)))
   }
   
-  const handleTabInfor = async (activeTab) => {
+  const handleTabInfor = async (slectedTab) => {
     try {
       let filteredTrips = [];
-      if (activeTab === 'Today') {
+      if (slectedTab === 'Today') {
         filteredTrips = tripHistory.filter(trip => trip.TripDate === formattedDate);
-      } else if (activeTab === 'Yesterday') {
+      } else if (slectedTab === 'Yesterday') {
         filteredTrips = tripHistory.filter(trip => handleDateDifference(trip.TripDate) === 1);
-      } else if (activeTab === 'Last Week') {
+      } else if (slectedTab === 'Last Week') {
         filteredTrips = tripHistory.filter(trip => handleDateDifference(trip.TripDate) > 1);
       }
       if (filteredTrips.length > 0) {
