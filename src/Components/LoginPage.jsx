@@ -50,15 +50,15 @@ const LoginPage = () => {
             {/* Header Section */}
             <header className="login-header">
                 <div className="logo-section">
-                    <img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1727276496/vemslogo_rsa3cx.png" alt="Logo" className="logo" />
-                    <h1>Ride Your Cab</h1>
+                    <img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1727755820/vemslogo-removebg-preview_crw2yd.png" alt="Logo" className="logo" />
+                    {/* <h1>Drive your Cab</h1> */}
                 </div>
                 <p>Fast, Easy & Reliable</p>
             </header>
             
             {/* SignIn Form */}
             <div className="login-card">
-                <h2>Sign In</h2>
+                <center><h3>Sign in to drive</h3></center>
                 <form onSubmit={handleLogin}>
                     <div className="input-group">
                         <label htmlFor="loginId">Email ID</label>

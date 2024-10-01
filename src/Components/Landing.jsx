@@ -27,8 +27,8 @@ const HomePage = () => {
           width:"70%"
         }}>
           {/* Text Overlay Here */}
-          <h2 style={{ margin: '0', fontSize: '2rem' }}>Book Your</h2>
-          <h1 style={{ margin: '0', fontSize: '3rem', fontWeight:"bold" }}>Cab Here..!</h1>
+          <h1 style={{ margin: '0', fontSize: '2rem' }}>Travello</h1>
+         <i> <h2 style={{ margin: '0', fontSize: '1.5rem', fontWeight:"bold" }}>Ready to have a great day?</h2></i>
         </div>
 
         <div style={{

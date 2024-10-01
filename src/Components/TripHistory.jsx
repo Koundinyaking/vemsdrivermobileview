@@ -157,7 +157,7 @@ const TripHistory = () => {
         ))
         }
         </div>
-        : <div>No trips found</div>
+        : <div className="no-trips-message">No trips found</div>
       }
     </div>
   );
