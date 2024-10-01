@@ -68,7 +68,7 @@ router.get('/getTripHistory/:id', async (req, res)=>{
             res.status(200).send({trip : tripHistory[0]})
         }      
         else{
-            res.status(404).send('No previous trips found')
+            res.status(200).send('No previous trips found')
         }
     }
     catch(err){

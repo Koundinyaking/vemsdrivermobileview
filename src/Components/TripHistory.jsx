@@ -61,8 +61,9 @@ const TripHistory = () => {
           PriorityOrder: trip.PriorityOrder,
           EmployeeName: trip.EmployeeName,
           EmployeeAddress: trip.EmployeeAddress,
-          StartTime: trip.StartTime,
-          EndTime: trip.EndTime
+          EmployeeCity: trip.EmployeeCity,
+          LoginTime: trip.LoginTime,
+          LogoutTime: trip.LogoutTime
         }));
         setTripDetails(prevDetails => [...prevDetails, ...newTripDetails]);
       }
@@ -81,7 +82,7 @@ const TripHistory = () => {
   const handleBackButtonClick = () => {
     navigate('/home'); 
   };
-
+  console.log(tripHistory)
   useEffect(()=>{
     handleTripHistory()
   }, [])
@@ -103,56 +104,60 @@ const TripHistory = () => {
           </div>
         )}
       </div>
-      <div className="trip-history-tabs">
-        <button className={`tab ${activeTab === 'Today' ? 'active' : ''}`} onClick={()=>handleTabClick('Today')}>Today</button>
-        <button className={`tab ${activeTab === 'Yesterday' ? 'active' : ''}`} onClick={() => handleTabClick('Yesterday')}>Yesterday</button>
-        <button className={`tab ${activeTab === 'Last Week' ? 'active' : ''}`} onClick={() => handleTabClick('Last Week')}>Last Week</button>
-      </div>
-      {tripDetails.map(trip => (
-        <div className="trip-history-content" key={trip.BookingId}>
-          <div className="trip-history-card">
-            <div className="trip-card-header" onClick={() => handleExpandClick(trip.BookingId)}>
-              <div>
-                <p className="trip-id">TRIP ID : {trip.BookingId}</p>
-                <p className="trip-date">{trip.TripDate}</p>
-              </div>
-                <FaChevronDown
-                  className={`chevron-icon ${expandedTripId === trip.BookingId ? 'expanded' : ''}`}
-                />
-              </div>
-              {expandedTripId === trip.BookingId && (
-                <>
-                <div className="trip-history-details">
-                  <div className="trip-detail"> 
-                    <p className="label"><FaUserAlt /> &nbsp; Employee Details</p>
-                    
-                    <p className="value" >{trip.EmployeeName}</p>
-                  </div>
+      {tripHistory?
+      <div>
+        <div className="trip-history-tabs">
+          <button className={`tab ${activeTab === 'Today' ? 'active' : ''}`} onClick={()=>handleTabClick('Today')}>Today</button>
+          <button className={`tab ${activeTab === 'Yesterday' ? 'active' : ''}`} onClick={() => handleTabClick('Yesterday')}>Yesterday</button>
+          <button className={`tab ${activeTab === 'Last Week' ? 'active' : ''}`} onClick={() => handleTabClick('Last Week')}>Last Week</button>
+        </div>
+        {tripDetails.map(trip => (
+          <div className="trip-history-content" key={trip.BookingId}>
+            <div className="trip-history-card">
+              <div className="trip-card-header" onClick={() => handleExpandClick(trip.BookingId)}>
+                <div>
+                  <p className="trip-id">TRIP ID : {trip.BookingId}</p>
+                  <p className="trip-date">{trip.TripDate}</p>
                 </div>
-                <div className="trip-locations">
-                  <div className="trip-location">
-                    <div>
-                      <div style={{ display: 'flex' }}>
-                        <FaMapMarkerAlt className="location-icon" style={{ color: 'red' }} />
-                        <p>{trip.EmployeeAddress}</p>
-                      </div>
-                      <br />
-                      <div style={{ display: 'flex' }}>
-                        <FaMapMarkerAlt className="location-icon" style={{ color: 'black' }} />
-                        <p>The Hive</p>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <p className="time">In Time: {trip.StartTime}</p>
-                        <p className="time">Out Time: {trip.EndTime}</p>
+                  <FaChevronDown
+                    className={`chevron-icon ${expandedTripId === trip.BookingId ? 'expanded' : ''}`}
+                  />
+                </div>
+                {expandedTripId === trip.BookingId &&(
+                  <>
+                  <div className="trip-history-details">
+                    <div className="trip-detail">  
+                      <p className="label"><FaUserAlt/> &nbsp; Employee Details</p>
+                      <p className="value" >{trip.EmployeeName}</p>
+                    </div>
+                  </div>
+                  <div className="trip-locations">
+                    <div className="trip-location">
+                      <div>
+                        <div style={{ display: 'flex' }}>
+                          <FaMapMarkerAlt className="location-icon" style={{ color: 'red' }} />
+                          <p>{trip.EmployeeAddress}, {trip.EmployeeCity}</p>
+                        </div>
+                        <br />
+                        <div style={{ display: 'flex' }}>
+                          <FaMapMarkerAlt className="location-icon" style={{ color: 'black' }} />
+                          <p>The Hive</p>
+                        </div>
+                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                          <p className="time">In Time: {trip.LoginTime}</p>
+                          <p className="time">Out Time: {trip.LogoutTime}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
+        ))
+        }
         </div>
-      ))
+        : <div>No trips found</div>
       }
     </div>
   );
