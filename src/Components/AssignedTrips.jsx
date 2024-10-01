@@ -31,7 +31,6 @@ const AssignedTrips = () => {
     );
   };
 
-  // Move to the previous card
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? tripsData.length - 1 : prevIndex - 1
@@ -56,55 +55,53 @@ const AssignedTrips = () => {
       <div className="card-carousel">
         {tripsData && tripsData.length > 0 ? (
           <div>
-            {/* Carousel Content */}
             <div className="carousel-content">
-              <button className="prev-button" onClick={handlePrev}>
-                <FaArrowAltCircleLeft size={30} />
-              </button>
+  <button className="prev-button" onClick={handlePrev}>
+    <FaArrowAltCircleLeft size={20} />
+  </button>
 
-              {/* Display Current Trip Card */}
-              {tripsData.map((trip, index) => (
-                <div
-                  key={trip.TripId}
-                  className={`trip-card ${index === currentIndex ? 'active' : ''}`}
-                  style={{ display: index === currentIndex ? 'block' : 'none' }}
-                >
-                  <h3>{trip.BookingId}</h3>
-                  <div className="trip-info-summary">
-                    <span>
-                      <FaClock /> {trip.TotalTime} &nbsp;&nbsp; 
-                      <FaStopwatch /> {trip.SeatCapacity - 1} Stops
-                    </span>
-                  </div>
+  {tripsData.map((trip, index) => (
+    <div
+      key={trip.TripId}
+      className={`trip-card ${index === currentIndex ? 'active' : ''}`}
+      style={{ display: index === currentIndex ? 'block' : 'none' }}
+    >
+      <h3>{trip.BookingId}</h3>
+      <div className="trip-info-summary">
+        <span>
+          <FaClock /> {trip.TotalTime} &nbsp;&nbsp; 
+          <FaStopwatch /> {trip.SeatCapacity - 1} Stops
+        </span>
+      </div>
 
-                  <div className="trip-details">
-                    <div className="your-location">
-                      <div className="location-row">
-                        <FaMapMarkerAlt className="location-icon" />
-                        <div className="location-details">
-                          {trip.Address} · {trip.City}
-                        </div>
-                      </div>
-                      <p className="location-address">{trip.yourLocation}</p>
-                    </div>
-
-                    <div className="final-destination">
-                      <div className="location-row">
-                        <FaMapMarkerAlt className="location-icon" />
-                        <div className="location-details">
-                          The Hive, Thiruvanmiyyur
-                        </div>
-                      </div>
-                      <p className="location-address">{trip.finalDestination}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              <button className="next-button" onClick={handleNext}>
-                <FaArrowAltCircleRight size={30} />
-              </button>
+      <div className="trip-details">
+        <div className="your-location">
+          <div className="location-row">
+            <FaMapMarkerAlt className="location-icon" />
+            <div className="location-details">
+              {trip.Address} · {trip.City}
             </div>
+          </div>
+          <p className="location-address">{trip.yourLocation}</p>
+        </div>
+
+        <div className="final-destination">
+          <div className="location-row">
+            <FaMapMarkerAlt className="location-icon" />
+            <div className="location-details">
+              The Hive, Thiruvanmiyyur
+            </div>
+          </div>
+          <p className="location-address">{trip.finalDestination}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <button className="next-button" onClick={handleNext}>
+    <FaArrowAltCircleRight size={20} />
+  </button>
+</div>
 
             {/* Carousel Dots */}
             <div className="carousel-dots">
