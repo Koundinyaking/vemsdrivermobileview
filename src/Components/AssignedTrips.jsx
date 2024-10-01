@@ -72,8 +72,8 @@ const AssignedTrips = () => {
                   <h3>{trip.BookingId}</h3>
                   <div className="trip-info-summary">
                     <span>
-                      <FaClock /> {trip.duration} &nbsp;&nbsp; 
-                      <FaStopwatch /> {trip.VehicleSeatCapacity - 1} Stops
+                      <FaClock /> {trip.TotalTime} &nbsp;&nbsp; 
+                      <FaStopwatch /> {trip.SeatCapacity - 1} Stops
                     </span>
                   </div>
 
@@ -82,7 +82,7 @@ const AssignedTrips = () => {
                       <div className="location-row">
                         <FaMapMarkerAlt className="location-icon" />
                         <div className="location-details">
-                          {trip.EmployeeAddress} · {trip.EmployeeCity}
+                          {trip.Address} · {trip.City}
                         </div>
                       </div>
                       <p className="location-address">{trip.yourLocation}</p>
