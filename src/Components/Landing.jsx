@@ -51,8 +51,8 @@ const HomePage = () => {
       </div>
       
       <div className="content">
-        <h1 style={{margin:"0", fontWeight:"bold", fontSize:"2.3rem"}}>Travello</h1>
-        <p style={{margin:"5px 0 10px 0",fontSize: '1.1 rem'}}>Your Comfort Matters!</p>
+        <h1 style={{margin:"10px", fontWeight:"bold", fontSize:"2.3rem"}}>Travello</h1>
+        <p style={{margin:"5px 0 15px 0",fontSize: '1.1 rem'}}>Your Comfort Matters!</p>
         <button className='login-btn' onClick={handleLogin}><LoginOutlined /> Go Ahead!</button>
       </div> 
     </>
