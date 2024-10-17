@@ -254,14 +254,17 @@ const AssignedTrips = () => {
                   </div>
 
                   <div className="otp-section">
-                    <input
-                      type="text"
-                      placeholder="Enter OTP"
-                      value={otpInputs[trip.TripId] || ''}
-                      onChange={(e) => handleOtpChange(e, trip.TripId)}
-                    />
-                    <button onClick={() => handleOtpSubmit(trip.TripId)}>Validate OTP</button>
-                  </div>
+                             <input
+                                  type="text"
+                                  placeholder="Enter OTP"
+                                  value={otpInputs[trip.TripId] || ''}
+                                  onChange={(e) => handleOtpChange(e, trip.TripId)}
+                                              />
+                                  <button onClick={() => handleOtpSubmit(trip.TripId)}>
+                                  Validate OTP
+                                  </button>
+                            <p className="otp-info">Please enter the OTP.</p> 
+                </div>
                 </div>
               ))}
 
