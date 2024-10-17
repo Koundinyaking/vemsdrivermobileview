@@ -157,6 +157,43 @@
   color: #333;
 }
 
+.prev-button, .next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.prev-button {
+  left: -20px; 
+}
+
+.next-button {
+  right: -20px; 
+}
+
+.prev-button svg, .next-button svg {
+  width: 20px; 
+  height: 20px;
+  color: #555; 
+}
+
+.prev-button svg:hover, .next-button svg:hover {
+  color: #000; 
+}
+
+.carousel-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .assigned-trips-container {
@@ -173,31 +210,8 @@
   }
 }
 
-.card-carousel {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
-}
 
-.prev-button, .next-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.prev-button {
-  left: 0;
-}
-
-.next-button {
-  right: 0;
-}
-
+/* 
 .trip-card {
   width: 300px;
   padding: 20px;
@@ -228,4 +242,4 @@
 
 .active-dot {
   background-color: blue;
-}
+} */
