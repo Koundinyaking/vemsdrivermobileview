@@ -111,4 +111,49 @@ router.post('/changePassword', async (req, res) => {
   });
   
 
+  router.post('/validateOtp', async (req, res) => {
+    const { tripId, otp } = req.body;
+
+    if (!tripId || !otp) {
+        return res.status(400).json({
+            success: false,
+            message: 'Missing tripId or otp in the request',
+        });
+    }
+
+    try {
+        const result = await connection.query(
+            'SELECT OTP FROM OTPDetails WHERE TripId = ?',
+            [tripId]
+        );
+
+        if (result[0].length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'Trip not found or no OTP available for this trip',
+            });
+        }
+
+        const storedOtp = result[0][0].OTP;
+
+        if (storedOtp === otp) {
+            return res.status(200).json({
+                success: true,
+                message: 'OTP verified successfully',
+            });
+        } else {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid OTP',
+            });
+        }
+    } catch (err) {
+        console.error('Error validating OTP:', err);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal Server Error',
+        });
+    }
+});
+
 module.exports = router;
